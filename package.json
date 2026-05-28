@@ -1,0 +1,34 @@
+{
+  "name": "notification-preferences-service",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "seed": "tsx src/seed.ts",
+    "init:app": "docker compose up --build -d && echo 'Waiting for app...' && for i in $(seq 1 30); do curl -s http://localhost:3000/health > /dev/null 2>&1 && echo 'App is ready at http://localhost:3000' && break; echo \"Waiting... ($$i/30)\"; sleep 2; done",
+    "reset": "docker compose down -v && npm run init:app",
+    "dev:app": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build -d && echo 'Waiting for app...' && for i in $(seq 1 30); do curl -s http://localhost:3000/health > /dev/null 2>&1 && echo 'App ready (HMR) at http://localhost:3000' && break; echo \"Waiting... ($$i/30)\"; sleep 2; done",
+    "logs": "docker compose logs -f app",
+    "down": "docker compose down",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit && tsc --noEmit --project tsconfig.test.json",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "postgres": "^3.4.0",
+    "pino": "^9.6.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}

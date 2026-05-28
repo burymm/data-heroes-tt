@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+*.log
+.idea/
+
+# docs/tasks — temporary task tracking
+docs/tasks/
