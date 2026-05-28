@@ -2,6 +2,11 @@
 
 A service that controls which notifications can be sent to a user on which channels, based on their choices, default settings, and global policies.
 
+## Prerequisites
+
+- **Docker Desktop** — required. The app and Postgres run in containers. Everything else (Node.js, npm) is optional.
+- **Node.js 22+** — only needed for running tests from the host or direct `npm run dev`.
+
 ## Quick Start
 
 ```bash
